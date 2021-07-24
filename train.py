@@ -19,8 +19,9 @@ if __name__ == '__main__':
 	print(args.epochs)
 	print(args.batchsize)
 	client = MlflowClient(tracking_uri='http://localhost:10500')
+	run_id = client.list_run_infos(0)[0].run_id
 
 	data = np.random.random(100)
 
 	for idx,item in enumerate(data):
-	    client.log_metric(run.info.run_id,'data',item,step=idx)
+	    client.log_metric(run_id,'data',item,step=idx)
