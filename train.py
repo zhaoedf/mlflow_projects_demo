@@ -1,6 +1,7 @@
 import argparse
 import mlflow
 import numpy as np
+import os
 from mlflow.tracking import MlflowClient
 
 
@@ -19,7 +20,11 @@ if __name__ == '__main__':
 	print(args.epochs)
 	print(args.batchsize)
 	client = MlflowClient(tracking_uri='http://localhost:10500')
-	run_id = client.list_run_infos(0)[0].run_id
+	
+	exp_name = os.environ['MLFLOW_EXPERIMENT_NAME']
+	exp_id = client.get_experiment_by_name(exp_name)
+	run_id = client.list_run_infos(exp_id)[-1].run_id
+	print(run_id)
 
 	data = np.random.random(100)
 
