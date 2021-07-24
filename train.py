@@ -1,6 +1,7 @@
 import argparse
 import mlflow
 import numpy as np
+from mlflow.tracking import MlflowClient
 
 
 def get_args():
