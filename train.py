@@ -22,11 +22,11 @@ if __name__ == '__main__':
 	client = MlflowClient(tracking_uri='http://localhost:10500')
 	
 	exp_name = os.environ['MLFLOW_EXPERIMENT_NAME']
-	print(exp_name)
-	exp_id = client.get_experiment_by_name(exp_name)
-	print(exp_id)
+	print('#############exp name: ',exp_name)
+	exp_id = client.get_experiment_by_name(exp_name).experiment_id
+	print('#############exp id: ',exp_id)
 	run_id = client.list_run_infos(exp_id)[0].run_id
-	print(run_id)
+	print('#############run id: ',run_id)
 
 	data = np.random.random(100)
 
